@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  bashfile:
+    build:
+      context: ../bashfile/.
+      dockerfile: ./Dockerfile
+    ports: 
+     - 1001:8000
+  fastapi:
+    build:
+      context: ../fastapi/.
+      dockerfile: ./Dockerfile
+    ports: 
+     - 1002:8000
+    volumes:
+      - $(pwd)/fastapi_logs:/app/log_dir
+    logging:
+      driver: "local"
+  selenium:
+    build:
+      context: ../selenium/.
+      dockerfile: ./Dockerfile
+    ports: 
+     - 1003:8000
+    environment:
+      - DATABASE_URL=redis://localhost:6379/0
+    volumes:
+      - $(pwd)/selenium_logs:/app/log_dir
+    logging:
+      driver: "local"

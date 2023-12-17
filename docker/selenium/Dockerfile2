@@ -1,0 +1,34 @@
+# Use Python 3.10.6 as base image
+FROM python:3.10.6
+
+RUN apt-get update && apt-get upgrade -y && apt-get clean
+RUN apt-get install sudo -y
+
+RUN apt update && apt upgrade -y && apt clean
+RUN apt install lsof
+
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+RUN apt-get update -qqy --no-install-recommends && apt-get install -qqy --no-install-recommends google-chrome-stable
+
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file to the container
+COPY requirements.txt .
+
+# Install the required packages
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Flask app code to the container
+COPY . .
+
+# Expose port 8000
+EXPOSE 8000
+
+# Start the Flask app
+CMD ["jupyter","notebook","--ip","0.0.0.0","--port","8000","--no-browser","--allow-root"]
+
+#docker build -t selenium_docker . && docker run -it -v $(pwd)/notebook:/app -p 7021:8000 selenium_docker
