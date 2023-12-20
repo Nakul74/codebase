@@ -63,4 +63,19 @@ git branch -D
 ```
 </br>
 
+## If you are getting 403 error while pushing the code than follow below steps
+
+* step 1: Go to below path in your github account and generate new token
+- My account - Setting - Developer Setting - Personal Access Token - Generate New Token - Tokens (classic) - Generate new token (classic)
+
+* step 2: use the below command to add origin
+```bash
+git remote set-url origin https://<token>@github.com/<username>/<repo>
+```
+
+* step 3: Now ou can push the changes
+```bash
+git push origin main
+```
+
 ## common github commnds list [article link](https://github.com/joshnh/Git-Commands)
