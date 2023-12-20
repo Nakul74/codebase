@@ -14,6 +14,20 @@ docker ps
 ```
 </br>
 
+## stop container
+
+```bash
+docker stop container_id
+```
+</br>
+
+## start container
+
+```bash
+docker start container_id
+```
+</br>
+
 ## List all containers (running + stopped)
 
 ```bash

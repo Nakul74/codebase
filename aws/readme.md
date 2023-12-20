@@ -1,5 +1,33 @@
 ### AWS Tutorials
 
+## create user for ssh
+```bash
+sudo adduser new_user 
+```
+or
+```bash
+sudo adduser new_user --disabled-password
+```
+```bash
+sudo usermod -aG sudo new_user
+```
+```bash
+sudo su - new_user
+```
+```bash
+mkdir .ssh
+```
+```bash
+chmod 700 .ssh
+```
+```bash
+echo "ssh-pub-key" > .ssh/authorized_keys
+```
+```bash
+chmod 600 .ssh/authorized_keys
+```
+</br>
+
 **AWS ECS Tutorials**
 - [KodeKloud](https://youtu.be/esISkPlnxL0)
 

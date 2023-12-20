@@ -24,3 +24,9 @@ python -u main.py
 </br>
 
 ## Product ready server setup [fastapi-nginx-gunicorn](https://dylancastillo.co/fastapi-nginx-gunicorn/)
+
+## [fastapi video streaming](https://stribny.name/blog/fastapi-video/)
+
+## [fastapi real time data streaming](https://stribny.name/blog/2020/07/real-time-data-streaming-using-fastapi-and-websockets/)
+
+## nginx alternative [caddy2](https://stribny.name/blog/caddy-config/)

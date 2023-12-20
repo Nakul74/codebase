@@ -28,6 +28,20 @@ realpath -s file_or_folder_path
 ```
 </br>
 
+## Go to your previous working directory.
+
+```bash
+cd -
+```
+</br>
+
+## Go to your home directory.
+
+```bash
+cd ~
+```
+</br>
+
 ## zip folder or file
 
 ```bash
@@ -55,7 +69,6 @@ scp -i ~/.ssh/id_ed25519 -r nakul@ec2-xx-xx-xx-xx.compute-1.amazonaws.com:/home/
 scp -i ~/.ssh/id_ed25519 -r /home/nakul74/Desktop/scrapper/ec2/projects/projects.zip nakul@ec2-xx-xx-xx-xx.compute-1.amazonaws.com:/home/nakul/.
 ```
 </br>
-
 
 
 ## change owner and group of folder and its subfolders recursively
@@ -137,3 +150,32 @@ or
 ## Linux instance create new user and ssh [aws article link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html) or [website article link](https://phoenixnap.com/kb/add-user-to-linux-group)
 
 ## ssh and scp [aws article link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-linux-inst-ssh.html)
+
+
+## create user for ssh
+```bash
+sudo adduser new_user 
+```
+or
+```bash
+sudo adduser new_user --disabled-password
+```
+```bash
+sudo usermod -aG sudo new_user
+```
+```bash
+sudo su - new_user
+```
+```bash
+mkdir .ssh
+```
+```bash
+chmod 700 .ssh
+```
+```bash
+echo "ssh-pub-key" > .ssh/authorized_keys
+```
+```bash
+chmod 600 .ssh/authorized_keys
+```
+</br>

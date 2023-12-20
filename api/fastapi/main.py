@@ -1,7 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, validator
 from typing import List, Optional
+import pandas as pd
+from fastapi.responses import FileResponse
 
 class Params(BaseModel):
     HSN: List[str] = Field(..., description="List of HSN code")
@@ -51,11 +53,16 @@ app.add_middleware(CORSMiddleware,
                    allow_methods=["*"],
                    allow_headers=["*"])
 
+def preprocess_list(l):
+    l = l[0].split(',')
+    l = [i.strip() for i in l if i.strip()]
+    return list(set(l))
+
 @app.get("/")
 async def home():
     return {"message": "server is on"}
 
-@app.post("/data")
+@app.post("/data/")
 async def get_data(data: Params):
     try:
         data_dict = data.dict()
@@ -63,6 +70,30 @@ async def get_data(data: Params):
     except Exception as e:
         print("Error in retrieving and processing data: %s", e)
         return {}
+
+@app.post("/translate/")
+def create_upload_file(
+    brand_name: str = Form(...),
+    receiver_email_list: List[str] = Form(...),
+    file: UploadFile = File(...),):
+    
+    df = pd.read_csv(file.file)
+    # df.to_csv('data.csv',index=False)
+    receiver_email_list = preprocess_list(receiver_email_list)
+    
+    d = {}
+    d['file'] = file.filename
+    d['email_list'] = receiver_email_list
+    d['brand_name'] = brand_name
+    return d
+
+@app.post("/uploadfile/")
+async def create_upload_file(file: UploadFile = File(...)):
+    file_path = file.filename
+    with open(file_path, "wb") as buffer:
+        buffer.write(file.file.read())
+
+    return FileResponse(file_path, media_type="image/png")
     
 if __name__ == "__main__":
     import uvicorn
