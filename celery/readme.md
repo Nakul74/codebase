@@ -1,5 +1,25 @@
 # celery command
 
+## Let you have one celery_config.py file and two modules are using same celery object from celery_config file then you have to mention names of file using task as below:
+## For example below celery_config include two file translation_app.py and optimization_app.py which uses same celery object tasks
+
+```bash
+import os
+from celery import Celery
+from dotenv import load_dotenv
+load_dotenv('.env')
+
+celery_app = Celery(__name__)
+celery_app.conf.broker_url = os.environ.get("CELERY_BROKER_URL")
+celery_app.conf.result_backend = os.environ.get("CELERY_RESULT_BACKEND")
+celery_app.conf.result_expires = os.environ.get("CELERY_RESULT_EXPIRE")
+celery_app.conf.include = [
+    'language_translation_api.translation_app',
+    'listing_optimization_api.optimization_app',
+]
+```
+</br>
+
 ## Celery run command with logs in terminal
 
 ```bash
@@ -31,10 +51,8 @@ rm -rf log_dir && mkdir log_dir && nohup celery -A file_name flower --port=5001 
 ```
 </br>
 
+
 ## Celery chain,group and chord [article link](https://sayari3.com/articles/18-chains-groups-and-chords-in-celery/)
-</br>
-</br>
-</br>
 
 ## Install redis linux [article link](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04)
 

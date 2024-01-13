@@ -21,10 +21,31 @@ du -sh /path/to/directory
 ```
 </br>
 
+## check size of directory + its contents
+
+```bash
+du -ah /path/to/directory
+```
+</br>
+
 ## Get absolute path of a folder or file
 
 ```bash
 realpath -s file_or_folder_path
+```
+</br>
+
+## Get path of installed package
+
+```bash
+which google-chrome
+```
+</br>
+
+## Get version of installed package
+
+```bash
+google-chrome --version
 ```
 </br>
 
@@ -53,6 +74,13 @@ zip -r example.zip folder_path
 
 ```bash
 unzip example.zip -d /path/to/destination
+```
+</br>
+
+## pypi grep
+
+```bash
+pip list | grep langchain
 ```
 </br>
 

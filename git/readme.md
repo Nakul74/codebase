@@ -70,7 +70,11 @@ git branch -D
 
 * step 2: use the below command to add origin
 ```bash
-git remote set-url origin https://<token>@github.com/<username>/<repo>
+git remote add origin https://<token>@github.com/<username>/<repo>
+```
+example
+```bash
+git remote add origin https://xxxxx@github.com/Nakul74/xxx.git
 ```
 
 * step 3: Now ou can push the changes

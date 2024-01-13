@@ -5,8 +5,8 @@ import logging
 logging_str = "[%(asctime)s] %(levelname)s %(module)s %(filename)s %(funcName)s: %(message)s"
 
 log_dir = "logs"
-log_filepath = os.path.join(log_dir,"running_logs.log")
 os.makedirs(log_dir, exist_ok=True)
+log_filepath = os.path.join(log_dir,"running_logs.log")
 
 
 logging.basicConfig(
@@ -19,4 +19,4 @@ logging.basicConfig(
     ]
 )
 
-logger = logging.getLogger("get_logger")
+logger = logging.getLogger("logger_config")
