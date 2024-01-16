@@ -4,6 +4,10 @@ from pydantic import BaseModel, Field, validator
 from typing import List, Optional
 import pandas as pd
 from fastapi.responses import FileResponse
+import redis_cache
+
+class info_params(BaseModel):
+    torrent_id: str
 
 class Params(BaseModel):
     HSN: List[str] = Field(..., description="List of HSN code")
@@ -94,7 +98,22 @@ async def create_upload_file(file: UploadFile = File(...)):
         buffer.write(file.file.read())
 
     return FileResponse(file_path, media_type="image/png")
+
+@app.post("/info")
+def get_info(data: info_params):
+    torrent_id = data.torrent_id
     
+    cached_data = redis_cache.get_cached_data(torrent_id)
+    data = {}
+    if cached_data:
+        data = json.loads(cached_data)
+    else:
+        data = {'torrent_id':torrent_id}
+        redis_cache.set_cached_data(torrent_id, json.dumps(data),expire_time=3600)
+
+    return data
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=5000, log_level="info",reload=True)

@@ -45,5 +45,18 @@ chmod 600 .ssh/authorized_keys
 ```
 </br>
 
+## If you get "SSH Permission denied (publickey)" error use following steps
+1. Make sure following ssh settings are applied to your local server
+```bash
+chmod 700 .ssh
+chmod 700 .ssh/*
+```
+</br>
+2. Make sure following ssh setting are applied to your remote server
+```bash
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+```
+</br>
 
 ## create new user on instance [article link](https://github.com/GauriSP10/streamlit_login_auth_ui)

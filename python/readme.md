@@ -18,3 +18,15 @@ or
 python -m pip install xxx
 ```
 </br>
+
+#### python upgrade package
+
+```bash
+pip install xxx --upgrade
+```
+
+#### python check package version
+
+```bash
+pip list | grep xxx
+```

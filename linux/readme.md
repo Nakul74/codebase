@@ -87,6 +87,13 @@ pip list | grep langchain
 ## scp from ec2 to local
 
 ```bash
+ssh -i <path-to-private-key> username@<hostip-or-aws-dns>
+```
+</br>
+
+## scp from ec2 to local
+
+```bash
 scp -i ~/.ssh/id_ed25519 -r nakul@ec2-xx-xx-xx-xx.compute-1.amazonaws.com:/home/nakul/projects.zip /home/nakul74/Desktop/scrapper/ec2/projects/.
 ```
 </br>
@@ -174,6 +181,20 @@ or
 ```
 </br>
 
+## If you get "SSH Permission denied (publickey)" error in vscode or local ssh use following steps
+1. Make sure following ssh settings are applied to your local server
+```bash
+chmod 700 .ssh
+chmod 700 .ssh/*
+```
+</br>
+2. Make sure following ssh setting are applied to your remote server
+```bash
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+```
+</br>
+
 
 ## Linux instance create new user and ssh [aws article link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html) or [website article link](https://phoenixnap.com/kb/add-user-to-linux-group)
 
@@ -207,3 +228,5 @@ echo "ssh-pub-key" > .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 ```
 </br>
+
+
