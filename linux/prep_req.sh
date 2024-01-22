@@ -10,7 +10,10 @@ if [ ! -f "$REQUIREMENTS_FILE" ]; then
     echo "Created $REQUIREMENTS_FILE using pip freeze."
 fi
 
-while IFS= read -r LINE; do
+# Ensure the while loop reads the last line by setting the input file descriptor to the end of the file
+exec 3<"$REQUIREMENTS_FILE"
+
+while IFS= read -r LINE <&3 || [ -n "$LINE" ]; do
     # Skip empty lines or lines starting with '#' (comments)
     if [[ -z "$LINE" || "$LINE" == "#"* ]]; then
         continue
@@ -34,11 +37,15 @@ while IFS= read -r LINE; do
             echo "Warning: Unable to determine the version of $PACKAGE_NAME. Skipping."
         fi
     fi
-done < "$REQUIREMENTS_FILE"
+done
+
+# Close the file descriptor
+exec 3<&-
 
 # Replace the original requirements file with the temporary file
 mv "$TEMP_REQUIREMENTS_FILE" "$REQUIREMENTS_FILE"
 
 echo "Updated $REQUIREMENTS_FILE with package versions."
+
 
 #This code basically appends version to package if not present in requirements.txt.

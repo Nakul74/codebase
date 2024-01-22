@@ -77,9 +77,10 @@ example
 git remote add origin https://xxxxx@github.com/Nakul74/xxx.git
 ```
 
-* step 3: Now ou can push the changes
+* step 3: Now you can push the changes after renaming branch to main
 ```bash
-git push origin main
+git branch -M main
+git push -u origin main
 ```
 
 ## common github commnds list [article link](https://github.com/joshnh/Git-Commands)
