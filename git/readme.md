@@ -84,3 +84,5 @@ git push -u origin main
 ```
 
 ## common github commnds list [article link](https://github.com/joshnh/Git-Commands)
+
+## Git bach first time setup guide [article link](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
