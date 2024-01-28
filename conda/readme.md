@@ -30,6 +30,9 @@ conda env list
 ```
 </br>
 
+## conda or miniconda installation guide ubuntu (https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
+
 ## conda handle long shell prefix while activating environment from local folder [article link](https://stackoverflow.com/questions/56619347/anaconda-environment-bash-prefix-too-long)
 
 ## conda env commands [article link](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+

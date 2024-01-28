@@ -1,0 +1,1 @@
+## mysql installation ubuntu 22.04 [article link](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04)
